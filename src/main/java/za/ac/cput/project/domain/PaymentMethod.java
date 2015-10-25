@@ -16,7 +16,7 @@ public class PaymentMethod implements Serializable{
     private String paymenttype;
     private float price;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="rentalId")
+    @JoinColumn(name="paymentMethodId")
     private List<Rental> rentals = new ArrayList<Rental>();
 
     public PaymentMethod(){}

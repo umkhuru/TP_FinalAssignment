@@ -18,9 +18,6 @@ public class Employee implements  Person, Serializable{
     private String surname;
     private String employeeAddress;
     private String employeeContactDetails;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="clientId")
-    private List<Client> clients = new ArrayList<Client>();
 
     public Employee(){}
 
@@ -31,7 +28,6 @@ public class Employee implements  Person, Serializable{
         surname=builder.surname;
         employeeAddress=builder.employeeAddress;
         employeeContactDetails=builder.employeeContactDetails;
-        clients=builder.clients;
     }
 
     @Override
@@ -55,9 +51,6 @@ public class Employee implements  Person, Serializable{
         return employeeContactDetails;
     }
 
-    public List<Client> getClients() {
-        return clients;
-    }
 
     public static class Builder{
 
@@ -66,7 +59,6 @@ public class Employee implements  Person, Serializable{
         private String surname;
         private String employeeAddress;
         private String employeeContactDetails;
-        private List<Client> clients = new ArrayList<Client>();
 
 
         public Builder employeeId(Long employeeId){
@@ -94,10 +86,6 @@ public class Employee implements  Person, Serializable{
             return this;
         }
 
-        public Builder clients(List<Client> value){
-            this.clients=value;
-            return this;
-        }
 
         public Builder copy(Employee value){
 
@@ -106,7 +94,6 @@ public class Employee implements  Person, Serializable{
             this.surname=value.getSurname();
             this.employeeAddress=value.getEmployeeAddress();
             this.employeeContactDetails=value.getEmployeeContactDetails();
-            this.clients=value.getClients();
 
             return this;
         }
@@ -121,7 +108,6 @@ public class Employee implements  Person, Serializable{
 
         Employee employee = (Employee) o;
 
-        if (clients != null ? !clients.equals(employee.clients) : employee.clients != null) return false;
         if (employeeAddress != null ? !employeeAddress.equals(employee.employeeAddress) : employee.employeeAddress != null)
             return false;
         if (employeeContactDetails != null ? !employeeContactDetails.equals(employee.employeeContactDetails) : employee.employeeContactDetails != null)
@@ -140,7 +126,6 @@ public class Employee implements  Person, Serializable{
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (employeeAddress != null ? employeeAddress.hashCode() : 0);
         result = 31 * result + (employeeContactDetails != null ? employeeContactDetails.hashCode() : 0);
-        result = 31 * result + (clients != null ? clients.hashCode() : 0);
         return result;
     }
 
@@ -152,7 +137,6 @@ public class Employee implements  Person, Serializable{
                 ", surname='" + surname + '\'' +
                 ", employeeAddress='" + employeeAddress + '\'' +
                 ", employeeContactDetails='" + employeeContactDetails + '\'' +
-                ", clients=" + clients +
                 '}';
     }
 }

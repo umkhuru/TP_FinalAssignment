@@ -11,14 +11,13 @@ import java.util.List;
 public class TransportationFactory {
 
     public static Transportation createTransportation(String tansportationSerialNumber, String tansportationMake
-                                                      ,String tansportationModel,String tansportationType,List<Rental> rentals)
+                                                      ,String tansportationModel,String tansportationType)
     {
         Transportation transportation = new Transportation
                 .Builder(tansportationSerialNumber)
                 .tansportationMake(tansportationMake)
                 .tansportationModel(tansportationModel)
                 .tansportationType(tansportationType)
-                .rentals(rentals)
                 .build();
 
         return transportation;

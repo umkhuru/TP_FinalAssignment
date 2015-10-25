@@ -10,14 +10,13 @@ import java.util.List;
  */
 public class EmployeeFactory {
 
-    public static Employee createEmployee(String name,String surname,String employeeAddress,String employeeContactDetails, List<Client> clients)
+    public static Employee createEmployee(String name,String surname,String employeeAddress,String employeeContactDetails)
     {
         Employee employee = new Employee
                 .Builder(name)
                 .surname(surname)
                 .employeeAddress(employeeAddress)
                 .employeeContactDetails(employeeContactDetails)
-                .clients(clients)
                 .build();
 
         return employee;

@@ -18,8 +18,11 @@ public class Rental implements Serializable{
     private Date returnDate;
     private Float rate;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="paymentMethodId")
-    private List<PaymentMethod> paymentMethods = new ArrayList<PaymentMethod>();
+    @JoinColumn(name="rentalId")
+    private List<Client> clients = new ArrayList<Client>();
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "rentalId")
+    private List<Transportation> transportations = new ArrayList<Transportation>();
 
     public Rental(){}
 
@@ -28,7 +31,8 @@ public class Rental implements Serializable{
         pickUpDate=builder.pickUpDate;
         returnDate=builder.returnDate;
         rate=builder.rate;
-        paymentMethods=builder.paymentMethods;
+        clients=builder.clients;
+        transportations=builder.transportations;
     }
 
     public Long getRentalId() {
@@ -43,8 +47,11 @@ public class Rental implements Serializable{
     public Float getRate() {
         return rate;
     }
-    public List<PaymentMethod> getPaymentMethods() {
-        return paymentMethods;
+    public List<Client> getClients() {
+        return clients;
+    }
+    public List<Transportation> getTransportations() {
+        return transportations;
     }
 
     public static class Builder{
@@ -52,13 +59,14 @@ public class Rental implements Serializable{
         private Date pickUpDate;
         private Date returnDate;
         private float rate;
-        private List<PaymentMethod> paymentMethods = new ArrayList<PaymentMethod>();
+        private List<Client> clients = new ArrayList<Client>();
+        private List<Transportation> transportations = new ArrayList<Transportation>();
 
-        public Builder(Long rentalId) {
-            this.rentalId = rentalId;
+        public Builder(Date pickUpDate) {
+            this.pickUpDate = pickUpDate;
         }
-        public Builder pickUpDate(Date value){
-            this.pickUpDate=value;
+        public Builder rentalId(Long value){
+            this.rentalId=value;
             return this;
         }
         public Builder returnDate(Date value){
@@ -69,8 +77,12 @@ public class Rental implements Serializable{
             this.rate=value;
             return this;
         }
-        public Builder paymentMethods(List<PaymentMethod> value){
-            this.paymentMethods=value;
+        public Builder clients(List<Client> value){
+            this.clients=value;
+            return this;
+        }
+        public Builder transportations(List<Transportation> value){
+            this.transportations=value;
             return this;
         }
 
@@ -80,7 +92,8 @@ public class Rental implements Serializable{
             this.pickUpDate=value.getPickUpDate();
             this.returnDate=value.getReturnDate();
             this.rate=value.getRate();
-            this.paymentMethods=value.getPaymentMethods();
+            this.clients=value.getClients();
+            this.transportations=value.getTransportations();
             return this;
         }
 
@@ -96,12 +109,13 @@ public class Rental implements Serializable{
 
         Rental rental = (Rental) o;
 
-        if (paymentMethods != null ? !paymentMethods.equals(rental.paymentMethods) : rental.paymentMethods != null)
-            return false;
+        if (clients != null ? !clients.equals(rental.clients) : rental.clients != null) return false;
         if (pickUpDate != null ? !pickUpDate.equals(rental.pickUpDate) : rental.pickUpDate != null) return false;
         if (rate != null ? !rate.equals(rental.rate) : rental.rate != null) return false;
         if (rentalId != null ? !rentalId.equals(rental.rentalId) : rental.rentalId != null) return false;
         if (returnDate != null ? !returnDate.equals(rental.returnDate) : rental.returnDate != null) return false;
+        if (transportations != null ? !transportations.equals(rental.transportations) : rental.transportations != null)
+            return false;
 
         return true;
     }
@@ -111,7 +125,8 @@ public class Rental implements Serializable{
         result = 31 * result + (pickUpDate != null ? pickUpDate.hashCode() : 0);
         result = 31 * result + (returnDate != null ? returnDate.hashCode() : 0);
         result = 31 * result + (rate != null ? rate.hashCode() : 0);
-        result = 31 * result + (paymentMethods != null ? paymentMethods.hashCode() : 0);
+        result = 31 * result + (clients != null ? clients.hashCode() : 0);
+        result = 31 * result + (transportations != null ? transportations.hashCode() : 0);
         return result;
     }
     @Override
@@ -121,7 +136,8 @@ public class Rental implements Serializable{
                 ", pickUpDate=" + pickUpDate +
                 ", returnDate=" + returnDate +
                 ", rate=" + rate +
-                ", paymentMethods=" + paymentMethods +
+                ", clients=" + clients +
+                ", transportations=" + transportations +
                 '}';
     }
 }

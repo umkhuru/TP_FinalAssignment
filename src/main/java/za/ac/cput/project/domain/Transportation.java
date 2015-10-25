@@ -17,9 +17,6 @@ public class Transportation implements Serializable{
     private String tansportationMake;
     private String tansportationModel;
     private String tansportationType;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="rentalId")
-    private List<Rental> rentals = new ArrayList<Rental>();
 
     public Transportation(){}
 
@@ -30,7 +27,6 @@ public class Transportation implements Serializable{
         tansportationMake=builder.tansportationMake;
         tansportationModel=builder.tansportationModel;
         tansportationType=builder.tansportationType;
-        rentals=builder.rentals;
     }
 
     public Long getTansportationId() {
@@ -53,9 +49,6 @@ public class Transportation implements Serializable{
         return tansportationType;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
-    }
 
     public static class Builder{
 
@@ -64,7 +57,7 @@ public class Transportation implements Serializable{
         private String tansportationMake;
         private String tansportationModel;
         private String tansportationType;
-        private List<Rental> rentals = new ArrayList<Rental>();
+
 
         public Builder tansportationId (Long tansportationId){
             this.tansportationId=tansportationId;
@@ -90,10 +83,7 @@ public class Transportation implements Serializable{
             this.tansportationType=value;
             return this;
         }
-        public Builder rentals(List<Rental> value){
-            this.rentals=value;
-            return this;
-        }
+
 
         public Builder copy(Transportation value){
 
@@ -102,7 +92,6 @@ public class Transportation implements Serializable{
             this.tansportationMake=value.getTansportationMake();
             this.tansportationModel=value.getTansportationModel();
             this.tansportationType=value.getTansportationType();
-            this.rentals=value.getRentals();
             return this;
         }
 
@@ -116,7 +105,6 @@ public class Transportation implements Serializable{
 
         Transportation that = (Transportation) o;
 
-        if (rentals != null ? !rentals.equals(that.rentals) : that.rentals != null) return false;
         if (tansportationId != null ? !tansportationId.equals(that.tansportationId) : that.tansportationId != null)
             return false;
         if (tansportationMake != null ? !tansportationMake.equals(that.tansportationMake) : that.tansportationMake != null)
@@ -138,7 +126,6 @@ public class Transportation implements Serializable{
         result = 31 * result + (tansportationMake != null ? tansportationMake.hashCode() : 0);
         result = 31 * result + (tansportationModel != null ? tansportationModel.hashCode() : 0);
         result = 31 * result + (tansportationType != null ? tansportationType.hashCode() : 0);
-        result = 31 * result + (rentals != null ? rentals.hashCode() : 0);
         return result;
     }
 
@@ -150,7 +137,6 @@ public class Transportation implements Serializable{
                 ", tansportationMake='" + tansportationMake + '\'' +
                 ", tansportationModel='" + tansportationModel + '\'' +
                 ", tansportationType='" + tansportationType + '\'' +
-                ", rentals=" + rentals +
                 '}';
     }
 }

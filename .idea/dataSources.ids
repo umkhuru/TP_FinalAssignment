@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="mysql - trs@localhost" uuid="8cd33071-c9a9-467e-b348-49fa39b1cc2b">
+    <database-info product="MySQL" version="5.6.19-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="trs"/>
+    <table name="client" schema="" catalog="trs" type="TABLE">
+      <column name="client_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cell_number" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tel_number" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="surname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rental_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="client_id"/>
+      <foreign-key name="FK_bfjdoy2dpussylq7g1s3s1tn8" columns="client_id" ref-table="employee" ref-schema="" ref-catalog="trs" ref-columns="employee_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_l0f5xemd197mnfqo3n513661n" columns="rental_id" ref-table="rental" ref-schema="" ref-catalog="trs" ref-columns="rental_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_j66jdir7lue5le22oqwalye6p" table="employee" schema="" catalog="trs" columns="client_id"/>
+      <index name="FK_l0f5xemd197mnfqo3n513661n" unique="false" columns="rental_id"/>
+    </table>
+    <table name="employee" schema="" catalog="trs" type="TABLE">
+      <column name="employee_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="employee_address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_contact_details" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="surname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="client_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="employee_id"/>
+      <foreign-key name="FK_j66jdir7lue5le22oqwalye6p" columns="client_id" ref-table="client" ref-schema="" ref-catalog="trs" ref-columns="client_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_bfjdoy2dpussylq7g1s3s1tn8" table="client" schema="" catalog="trs" columns="client_id"/>
+      <index name="FK_j66jdir7lue5le22oqwalye6p" unique="false" columns="client_id"/>
+    </table>
+    <table name="payment_method" schema="" catalog="trs" type="TABLE">
+      <column name="paymentmethod_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="paymenttype" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="price" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="paymentmethod_id"/>
+    </table>
+    <table name="rental" schema="" catalog="trs" type="TABLE">
+      <column name="rental_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="pick_up_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="rate" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="return_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="rental_id"/>
+      <foreign-key name="FK_31rt853oj2i3qo4lx85ipdcme" columns="rental_id" ref-table="transportation" ref-schema="" ref-catalog="trs" ref-columns="tansportation_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_l0f5xemd197mnfqo3n513661n" table="client" schema="" catalog="trs" columns="rental_id"/>
+      <exported-key name="FK_dh4gdc0jth0hfa73q84uxq03a" table="transportation" schema="" catalog="trs" columns="rental_id"/>
+    </table>
+    <table name="transportation" schema="" catalog="trs" type="TABLE">
+      <column name="tansportation_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="tansportation_make" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tansportation_model" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tansportation_serial_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tansportation_type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rental_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="tansportation_id"/>
+      <foreign-key name="FK_dh4gdc0jth0hfa73q84uxq03a" columns="rental_id" ref-table="rental" ref-schema="" ref-catalog="trs" ref-columns="rental_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_31rt853oj2i3qo4lx85ipdcme" table="rental" schema="" catalog="trs" columns="rental_id"/>
+      <index name="FK_dh4gdc0jth0hfa73q84uxq03a" unique="false" columns="rental_id"/>
+    </table>
+  </data-source>
+</component>

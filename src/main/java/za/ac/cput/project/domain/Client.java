@@ -20,8 +20,8 @@ public class Client implements Person, Serializable {
     @Embedded
     private Login login;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="rentalId")
-    private List<Rental> rentals = new ArrayList<Rental>();
+    @JoinColumn(name="clientId")
+    private List<Employee> employees = new ArrayList<Employee>();
 
     private Client(){};
 
@@ -31,7 +31,7 @@ public class Client implements Person, Serializable {
         surname=builder.surname;
         contactDetails=builder.contactDetails;
         login=builder.login;
-        rentals=builder.rentals;
+        employees=builder.employees;
     }
     public Long getClientId() {
         return clientId;
@@ -50,8 +50,8 @@ public class Client implements Person, Serializable {
     public Login getLogin() {
         return login;
     }
-    public List<Rental> getRentals() {
-        return rentals;
+    public List<Employee> getEmployee() {
+        return employees;
     }
 
 
@@ -62,14 +62,14 @@ public class Client implements Person, Serializable {
         private String surname;
         private ContactDetails contactDetails;
         private Login login;
-        private List<Rental> rentals = new ArrayList<Rental>();
+        private List<Employee> employees = new ArrayList<Employee>();
 
-        public Builder(Long clientId){
-            this.clientId=clientId;
+        public Builder(String name){
+            this.name=name;
         }
 
-        public Builder name(String value){
-            this.name=value;
+        public Builder clientId(Long value){
+            this.clientId=value;
             return this;
         }
 
@@ -87,8 +87,8 @@ public class Client implements Person, Serializable {
             this.login=value;
             return this;
         }
-        public Builder rentals(List<Rental> value){
-            this.rentals=value;
+        public Builder employees(List<Employee> value){
+            this.employees=value;
             return this;
         }
 
@@ -99,12 +99,13 @@ public class Client implements Person, Serializable {
             this.surname=value.getSurname();
             this.contactDetails=value.getContactDetails();
             this.login=value.getLogin();
-            this.rentals=value.getRentals();
+            this.employees=value.getEmployee();
             return this;
         }
 
         public Client build(){return new Client(this);}
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,16 +114,16 @@ public class Client implements Person, Serializable {
         Client client = (Client) o;
 
         if (clientId != null ? !clientId.equals(client.clientId) : client.clientId != null) return false;
-        if (name != null ? !name.equals(client.name) : client.name != null) return false;
-        if (surname != null ? !surname.equals(client.surname) : client.surname != null)
-            return false;
         if (contactDetails != null ? !contactDetails.equals(client.contactDetails) : client.contactDetails != null)
             return false;
+        if (employees != null ? !employees.equals(client.employees) : client.employees != null) return false;
         if (login != null ? !login.equals(client.login) : client.login != null) return false;
-        if (rentals != null ? !rentals.equals(client.rentals) : client.rentals != null) return false;
+        if (name != null ? !name.equals(client.name) : client.name != null) return false;
+        if (surname != null ? !surname.equals(client.surname) : client.surname != null) return false;
 
         return true;
     }
+
     @Override
     public int hashCode() {
         int result = clientId != null ? clientId.hashCode() : 0;
@@ -130,18 +131,19 @@ public class Client implements Person, Serializable {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (contactDetails != null ? contactDetails.hashCode() : 0);
         result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (rentals != null ? rentals.hashCode() : 0);
+        result = 31 * result + (employees != null ? employees.hashCode() : 0);
         return result;
     }
+
     @Override
     public String toString() {
         return "Client{" +
                 "clientId=" + clientId +
-                ", clientName='" + name + '\'' +
-                ", clientSurname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", contactDetails=" + contactDetails +
                 ", login=" + login +
-                ", rentals=" + rentals +
+                ", employees=" + employees +
                 '}';
     }
 }
