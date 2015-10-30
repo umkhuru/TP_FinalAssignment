@@ -4,13 +4,14 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import za.ac.cput.project.config.factory.TransportationFactory;
+import za.ac.cput.project.config.factory.LoginFactory;
+import za.ac.cput.project.domain.Login;
 import za.ac.cput.project.domain.Transportation;
 
 /**
  * Created by student on 2015/10/26.
  */
-public class TransportationTest {
+public class LoginTest {
 
     @Before
     public void setUp() throws Exception {
@@ -19,19 +20,18 @@ public class TransportationTest {
     }
 
     @Test
-    public void testCreateTransportation() throws Exception {
+    public void testCreateLogin() throws Exception {
 
-        Transportation transportation = TransportationFactory.createTransportation("12345", "BMW", "2009", "sedan");
+        Login login = LoginFactory.createLogin("Teddy", "Long");
 
-        Assert.assertEquals("BMW",transportation.getTansportationMake());
+        Assert.assertEquals("Long", login.getPassword());
+
 
 
     }
 
     @After
     public void tearDown() throws Exception {
-
-
 
 
     }

@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class RentalFactory {
 
-    public static Rental createRental(Map<Date, Date> value, float rate, List<Client> clients, List<Transportation> transportations)
+    public static Rental createRental(Map<String, Date> value, float rate, List<Client> clients, List<Transportation> transportations)
     {
         Rental rental = new Rental
                 .Builder(value.get("pickUpDate"))

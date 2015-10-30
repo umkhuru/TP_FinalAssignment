@@ -9,11 +9,11 @@ import java.util.Map;
  */
 public class LoginFactory {
 
-    public static Login createLogin(Map<String, String> value)
+    public static Login createLogin(String username, String password)
     {
         Login login = new Login
-                .Builder(value.get("username"))
-                .password(value.get("password"))
+                .Builder(username)
+                .password(password)
                 .build();
 
         return login;

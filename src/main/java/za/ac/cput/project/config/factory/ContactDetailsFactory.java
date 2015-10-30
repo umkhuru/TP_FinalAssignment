@@ -9,12 +9,12 @@ import java.util.Map;
  */
 public class ContactDetailsFactory {
 
-    public static ContactDetails createContactDetails(Map<String,String> values, Map<Long, Long> value)
+    public static ContactDetails createContactDetails(Map<String,String> values,Long cellNumber, Long telNumber)
     {
         ContactDetails contactDetails = new ContactDetails.Builder(values.get("email"))
                 .address(values.get("address"))
-                .cellNumber(value.get("cellNumber"))
-                .telNumber(value.get("telNumber"))
+                .cellNumber(cellNumber)
+                .telNumber(telNumber)
                 .build();
 
         return contactDetails;
