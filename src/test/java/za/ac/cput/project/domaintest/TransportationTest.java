@@ -21,7 +21,7 @@ public class TransportationTest {
     @Test
     public void testCreateTransportation() throws Exception {
 
-        Transportation transportation = TransportationFactory.createTransportation("12345", "BMW", "2009", "sedan");
+        Transportation transportation = TransportationFactory.createTransportation("12345", "BMW", "2009", "luxsery");
 
         Assert.assertEquals("BMW",transportation.getTansportationMake());
 

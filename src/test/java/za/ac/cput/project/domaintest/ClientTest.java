@@ -50,7 +50,9 @@ public class ClientTest {
 
         Client client = ClientFactory.createClient(svalues, logins, contactDetails, employees);
 
-        Assert.assertEquals("jimmy","jimmy");
+        //Assert.assertEquals("jimmy","jimmy");
+        Assert.assertEquals("jimmy", svalues.get("name"));
+
     }
 
     @After

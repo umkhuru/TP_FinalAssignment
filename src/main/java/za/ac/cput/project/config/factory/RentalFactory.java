@@ -14,11 +14,11 @@ import java.util.Map;
  */
 public class RentalFactory {
 
-    public static Rental createRental(Map<String, Date> value, float rate, List<Client> clients, List<Transportation> transportations)
+    public static Rental createRental(Map<String, Date> valued, float rate, List<Client> clients, List<Transportation> transportations)
     {
         Rental rental = new Rental
-                .Builder(value.get("pickUpDate"))
-                .returnDate(value.get("returnDate"))
+                .Builder(valued.get("pickUpDate"))
+                .returnDate(valued.get("returnDate"))
                 .rate(rate)
                 .clients(clients)
                 .transportations(transportations)

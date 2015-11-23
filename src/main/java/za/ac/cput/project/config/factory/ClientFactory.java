@@ -10,11 +10,11 @@ import java.util.Map;
  */
 public class ClientFactory {
 
-    public static Client createClient(Map<String, String> values, Login login, ContactDetails contactDetails, List<Employee> employees)
+    public static Client createClient(Map<String, String> value, Login login, ContactDetails contactDetails, List<Employee> employees)
     {
         Client client = new Client
-                .Builder(values.get("name"))
-                .surname(values.get("surname"))
+                .Builder(value.get("name"))
+                .surname(value.get("surname"))
                 .login(login)
                 .contactDetails(contactDetails)
                 .employees(employees)
